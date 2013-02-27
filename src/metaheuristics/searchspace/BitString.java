@@ -1,56 +1,59 @@
 package metaheuristics.searchspace;
 
+import java.util.Arrays;
 import java.util.Random;
 
-import metaheuristics.FitnessFunction;
 import metaheuristics.SearchSpace;
 
 public class BitString implements SearchSpace {
 	private static Random random = new Random();
 	
-	private final boolean[] string;
-	private final double mutationProbability;
-	private final FitnessFunction<boolean[]> fitnessFunction;
+	public final boolean[] string;
 	
-	public static BitString randomBitString(int length, FitnessFunction<boolean[]> fitnessFunction) {
-		boolean[] string = new boolean[length];
+	public BitString(int length) {
+		string = new boolean[length];
 		
 		for (int i = 0; i < string.length; i++) {
 			string[i] = random.nextBoolean();
 		}
-		
-		return new BitString(string, fitnessFunction);
 	}
 	
-	public BitString(boolean[] string, FitnessFunction<boolean[]> fitnessFunction) {
+	public BitString(boolean[] string) {
 		this.string = string;
-		this.fitnessFunction = fitnessFunction;
-		
-		mutationProbability = 1.0 / string.length;
+	}
+	
+	public boolean[] getString() {
+		return string; // aliasing..
+	}
+	
+	public int getLength() {
+		return string.length;
 	}
 	
 	@Override
-	public SearchSpace getMutation() {
+	public SearchSpace localMutation() {
+		boolean[] mutation = Arrays.copyOf(string, string.length);
+		
+		int i = random.nextInt(mutation.length);
+		mutation[i] = !string[i];
+		
+		return new BitString(mutation);
+	}
+	
+	@Override
+	public SearchSpace globalMutation() {
 		boolean[] mutation = new boolean[string.length];
+		double probability = 1.0 / string.length;
 		
 		for (int i = 0; i < mutation.length; i++) {
-			if (random.nextDouble() < mutationProbability) {
+			if (random.nextDouble() < probability) {
 				mutation[i] = !string[i];
 			} else {
 				mutation[i] = string[i];
 			}
 		}
 		
-		return new BitString(mutation, fitnessFunction);
-	}
-
-	@Override
-	public int fitness() {
-		return fitnessFunction.evalutate(string);
-	}
-	
-	public int optimumFitness() {
-		return fitnessFunction.optimum(string);
+		return new BitString(mutation);
 	}
 	
 	@Override

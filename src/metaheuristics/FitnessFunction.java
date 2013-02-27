@@ -1,6 +1,6 @@
 package metaheuristics;
 
-public interface FitnessFunction<T> {
-	public int evalutate(T state);
-	public int optimum(T state);
+public interface FitnessFunction {
+	public int evalutate(SearchSpace searchSpace);
+	public int optimum(SearchSpace searchSpace);
 }

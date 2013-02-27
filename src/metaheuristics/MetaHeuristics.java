@@ -1,15 +1,39 @@
 package metaheuristics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import metaheuristics.algorithm.OnePlusOne;
+import metaheuristics.algorithm.SimulatedAnnealing;
 import metaheuristics.fitnessfunction.LeadingOnes;
+import metaheuristics.fitnessfunction.OneMax;
 import metaheuristics.searchspace.BitString;
 
 public class MetaHeuristics {
 	public static void main(String[] args) {
-		FitnessFunction<boolean[]> fitnessFunction = new LeadingOnes();
-		SearchSpace searchSpace = BitString.randomBitString(128, fitnessFunction);
-		Algorithm algorithm = new OnePlusOne();
+		// select search space
+		BitString bitString = new BitString(64);
 		
-		algorithm.run(searchSpace);
+		// select fitness function based on search space selection
+		FitnessFunction fitnessFunction = new OneMax();
+//		FitnessFunction fitnessFunction = new LeadingOnes();
+
+		// select general algorithm
+//		Algorithm algorithm = new OnePlusOne();
+		Algorithm algorithm = new SimulatedAnnealing(10000, 64);
+
+		// select stopping criteria
+		List<StoppingCriterion> stoppingCriteria = new ArrayList<StoppingCriterion>();
+//		stoppingCriteria.add(new OptimumReached());
+		
+		// select visualization based on search space selection
+		List<Visualizer> visualizers = new ArrayList<Visualizer>();
+//		visualizers.add(new visualizer.Onion());
+		
+		// create schedule
+		Schedule schedule = new Schedule(bitString, fitnessFunction, algorithm, stoppingCriteria, visualizers);
+		
+		// run schedule
+		schedule.run();
 	}
 }

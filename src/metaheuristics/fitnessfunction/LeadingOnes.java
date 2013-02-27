@@ -1,11 +1,17 @@
 package metaheuristics.fitnessfunction;
 
 import metaheuristics.FitnessFunction;
+import metaheuristics.SearchSpace;
+import metaheuristics.searchspace.BitString;
 
-public class LeadingOnes implements FitnessFunction<boolean[]> {
+public class LeadingOnes implements FitnessFunction {
 	@Override
-	public int evalutate(boolean[] string) {
+	public int evalutate(SearchSpace searchSpace) {
+		BitString bitString = (BitString)searchSpace;
+		
 		int fitness = 0;
+		
+		boolean[] string = bitString.getString();
 		
 		for (boolean bit : string) {
 			if (bit) {
@@ -19,7 +25,9 @@ public class LeadingOnes implements FitnessFunction<boolean[]> {
 	}
 	
 	@Override
-	public int optimum(boolean[] string) {
-		return string.length;
+	public int optimum(SearchSpace searchSpace) {
+		BitString bitString = (BitString)searchSpace;
+		
+		return bitString.getLength();		
 	}
 }
