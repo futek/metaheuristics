@@ -3,9 +3,7 @@ package metaheuristics;
 import java.util.ArrayList;
 import java.util.List;
 
-import metaheuristics.algorithm.OnePlusOne;
 import metaheuristics.algorithm.SimulatedAnnealing;
-import metaheuristics.fitnessfunction.LeadingOnes;
 import metaheuristics.fitnessfunction.OneMax;
 import metaheuristics.searchspace.BitString;
 
@@ -20,7 +18,7 @@ public class MetaHeuristics {
 
 		// select general algorithm
 //		Algorithm algorithm = new OnePlusOne();
-		Algorithm algorithm = new SimulatedAnnealing(10000, 64);
+		Algorithm algorithm = new SimulatedAnnealing(0.01, 200);
 
 		// select stopping criteria
 		List<StoppingCriterion> stoppingCriteria = new ArrayList<StoppingCriterion>();
