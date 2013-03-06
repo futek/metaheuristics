@@ -49,11 +49,7 @@ public class SimulatedAnnealing implements Algorithm {
 			
 			time++;
 			
-			if (searchSpaceFitness == optimumFitness) {
-				System.out.println("optimum reached in time " + time);
-				break;
-			} else if (time >= maxTime) {
-				System.out.println("out of time");
+			if (StoppingCriterion.shouldStop(stoppingCriteria, maxTime, optimumFitness, time, searchSpaceFitness)) {
 				break;
 			}
 		}

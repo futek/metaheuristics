@@ -3,6 +3,9 @@ package metaheuristics;
 import java.util.ArrayList;
 import java.util.List;
 
+import stoppingcriterion.OptimumReached;
+import stoppingcriterion.OutOfTime;
+
 import metaheuristics.algorithm.SimulatedAnnealing;
 import metaheuristics.fitnessfunction.OneMax;
 import metaheuristics.searchspace.BitString;
@@ -22,7 +25,8 @@ public class MetaHeuristics {
 
 		// select stopping criteria
 		List<StoppingCriterion> stoppingCriteria = new ArrayList<StoppingCriterion>();
-//		stoppingCriteria.add(new OptimumReached());
+		stoppingCriteria.add(new OptimumReached());
+		stoppingCriteria.add(new OutOfTime());
 		
 		// select visualization based on search space selection
 		List<Visualizer> visualizers = new ArrayList<Visualizer>();
