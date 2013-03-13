@@ -50,7 +50,8 @@ public class SimulatedAnnealing implements Algorithm {
 			time++;
 			
 			if (StoppingCriterion.shouldStop(stoppingCriteria, maxTime, optimumFitness, time, searchSpaceFitness)) {
-				break;
+				System.out.println(time);
+				break;				
 			}
 		}
 	}
