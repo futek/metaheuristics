@@ -29,6 +29,7 @@ public class MetaHeuristics {
 			
 			// select visualization based on search space selection
 			List<Visualizer> visualizers = new ArrayList<Visualizer>();
+
 //		visualizers.add(new visualizer.Onion());
 			
 			// create schedule
