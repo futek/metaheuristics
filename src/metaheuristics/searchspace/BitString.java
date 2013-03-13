@@ -57,6 +57,17 @@ public class BitString implements SearchSpace {
 	}
 	
 	@Override
+	public SearchSpace constructMutation(double[] pheromone) {
+		boolean[] mutation = new boolean[string.length];
+		
+		for (int i = 0; i < mutation.length; i++) {
+			mutation[i] = random.nextDouble() < pheromone[i];
+		}
+		
+		return new BitString(mutation);
+	}
+	
+	@Override
 	public String toString() {
 		String result = "";
 		

@@ -3,7 +3,7 @@ package metaheuristics;
 import java.util.ArrayList;
 import java.util.List;
 
-import metaheuristics.algorithm.OnePlusOne;
+import metaheuristics.algorithm.MMAS;
 import metaheuristics.fitnessfunction.OneMax;
 import metaheuristics.searchspace.BitString;
 import stoppingcriterion.OptimumReached;
@@ -19,13 +19,14 @@ public class MetaHeuristics {
 //		FitnessFunction fitnessFunction = new LeadingOnes();
 
 		// select general algorithm
-		Algorithm algorithm = new OnePlusOne();
+//		Algorithm algorithm = new OnePlusOne();
 //		Algorithm algorithm = new SimulatedAnnealing(0.01, 500);
+		Algorithm algorithm = new MMAS(0.1);
 
 		// select stopping criteria
 		List<StoppingCriterion> stoppingCriteria = new ArrayList<StoppingCriterion>();
 		stoppingCriteria.add(new OptimumReached());
-		stoppingCriteria.add(new OutOfTime());
+//		stoppingCriteria.add(new OutOfTime());
 		
 		// select visualization based on search space selection
 		List<Visualizer> visualizers = new ArrayList<Visualizer>();
