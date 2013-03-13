@@ -22,9 +22,9 @@ public class OnePlusOne implements Algorithm {
 			if (mutationFitness > fitnessFunction.evalutate(searchSpace)) {
 				searchSpace = mutation;
 				
-				System.out.println(searchSpace); // print fit mutation
+//				System.out.println(searchSpace); // print fit mutation
 				if (mutationFitness == fitnessFunction.optimum(searchSpace)) { // stop criteria
-					System.out.println("Iterations: " + iterations); // print iterations
+					System.out.println(iterations); // print iterations
 					return;
 				}
 			}

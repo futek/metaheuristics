@@ -44,7 +44,7 @@ public class SimulatedAnnealing implements Algorithm {
 
 			if (random.nextDouble() < probality) {
 				searchSpace = mutation;
-				System.out.println(searchSpace);
+//				System.out.println(searchSpace);
 			}
 			
 			time++;
